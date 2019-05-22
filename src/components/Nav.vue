@@ -100,5 +100,42 @@
     color:#444;
     background: #fff;
 }
+
+
+/* 另一种nav样式 */
+    
+    .header-top__fixed .header-logo{
+        background: url(../../public/images/logo_red.png) no-repeat;
+        background-size: 100%;
+    }
+    .header-top__fixed .header-nav .item{
+        color:#333;
+    }
+    .header-top__fixed .header-nav .item:hover{
+        color:#f57a6b;
+    }
+    .header-top__fixed .header-nav .item.router-link-active{
+        color:#f57a6b;
+    }
+    .header-top__fixed .header-user .register{
+        height: 32px;
+        line-height: 32px;
+        background: #f57a6b;
+    }
+    .header-top__fixed .header-user .register:hover{
+        /* 线性渐变 */
+        background: linear-gradient(#F45D68, #E54646)
+    }
+    
+    .header-top__fixed .header-user .login{
+        height: 34px;
+        line-height: 34px;
+        color:#333;
+        border-color:#d9d9d9;
+    }
+    .header-top__fixed .header-user .login:hover{
+        background: linear-gradient(#fff,#f7f7f7);
+        border-color:#ccc;
+    }
 </style>
 

@@ -20,6 +20,8 @@
             </div>
             <div class="header-bg__info">图片：<a href="#">插画师苏寒</a></div>
         </header> 
+        <!-- 登录注册 -->
+        <Login />
         <!-- 中间部分 -->
         <div class="main">
             <div class="main-inner">
@@ -31,19 +33,20 @@
                     <!-- 长条banner -->
                     <div class="banner_2"></div>
                     <!-- 一行图 -->
-                    <!-- <div class="main-list__wrapper clearfix">
-                        <div class="noLoad">
+                    <div class="main-list__wrapper clearfix">
+                        <!-- <div class="noLoad">
                             <div class="spinner">
                                 <div class="bounce1"></div>
                                 <div class="bounce2"></div>
                                 <div class="bounce3"></div>
                             </div>
-                        </div>
-                    </div> -->
-                    <!-- theme 主题 -->
-                    <!-- <a style="cursor:pointer;margin-bottom:20px;" v-for="(theme,index) in Theme" :key="index" @click="goTheme(theme.objectId)">
-                        <img class="blur" src="theme.mainPic.url" :alt="theme.theme_title">
-                    </a> -->
+                        </div> -->
+                        <!-- theme 主题 -->
+                        <a style="cursor:pointer;" v-for="(theme,index) in Theme" :key="index" @click="goTheme(theme.objectId)">
+                            <img class="blur" :src="theme.mainPic.url" :alt="theme.Theme_title">
+                            <span>{{theme.Theme_title}}</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,14 +55,21 @@
 <script>
 import $ from 'jquery'
 import Nav from '@/components/Nav.vue'
+import Login from '@/components/Login.vue'
+import {Theme} from '../api'
 export default {
     data(){
         return{
-            Theme:""
+            Theme:[]
         }
     },
     components:{
-        Nav
+        Nav,
+        Login
+    },
+    async created(){
+        this.Theme = await Theme()
+        // console.log(this.Theme)
     },
     methods:{
         goTheme:function(e){
@@ -67,6 +77,57 @@ export default {
         }
     },
     mounted(){
+        // 注册
+        var $register_btn = $('#header').find('.register')
+        var $user = $('#user')
+        var $user_register = $user.find('.register')
+        var $user_login = $user.find('.login')
+        var $user_inner = $user.find('.user-inner')
+        $user_inner.click(()=>{
+            return false
+        })
+        // 注册
+        $register_btn.click(()=>{
+            $('.cricle-4').hide();
+            $('.cricle-3').show();
+            $user.show();
+            $user_register.show();
+            $user_login.hide();
+            return false;
+        })
+        var $switch_register = $user.find('.cricle-4')
+        $switch_register.click(()=>{
+            $user_login.hide();
+            $user_register.show();
+            $('.cricle-4').hide();
+            $('.cricle-3').show();
+        })
+        // 登录
+        var $login_btn = $('#header').find('.login')
+        $login_btn.click(()=>{
+            $('.cricle-3').hide();
+            $('.cricle-4').show();
+            $user.show();
+            $user_register.hide();
+            $user_login.show();
+            return false;
+        })
+        var $switch_login = $user.find('.cricle-3')
+        $switch_login.click(()=>{
+            $user_register.hide();
+            $user_login.show();
+            $('.cricle-3').hide();
+            $('.cricle-4').show();
+        })
+        // 关闭登录注册框
+        var $close_btn = $user.find('.close')
+        $close_btn.click(()=>{
+            $user.hide()
+        })
+        $(document).click(()=>{
+            $user.hide()
+        })
+        // console.log($register_btn)
         // 屏幕滚动
         $(window).scroll(function () {
             // 背景图放大
@@ -82,6 +143,7 @@ export default {
 }
 </script>
 <style scoped>
+@import url(../../public/css/animate.min.css);
 /* header */
     .header{
         position: relative;
@@ -112,36 +174,6 @@ export default {
         background: #fff;
         border-bottom: 1px solid rgba(204, 204, 204, 0.25);
     }
-    .header-top__fixed .header-logo{
-        background: url(../../public/images/logo_red.png) no-repeat;
-        background-size: 100%;
-    }
-    .header-top__fixed .header-nav .item{
-        color:#333;
-    }
-    .header-top__fixed .header-nav .item:hover{
-        color:#f57a6b;
-    }
-    .header-top__fixed .header-user .register{
-        height: 32px;
-        line-height: 32px;
-        background: #f57a6b;
-    }
-    .header-top__fixed .header-user .register:hover{
-        /* 线性渐变 */
-        background: linear-gradient(#F45D68, #E54646)
-    }
-    .header-top__fixed .header-user .login{
-        height: 34px;
-        line-height: 34px;
-        color:#333;
-        border-color:#d9d9d9;
-    }
-    .header-top__fixed .header-user .login:hover{
-        background: linear-gradient(#fff,#f7f7f7);
-        border-color:#ccc;
-    }
-
     /* banner图上的内容 */
     .banner{
         position: absolute;
@@ -198,6 +230,9 @@ export default {
         color:rgba(225, 225, 225, .85)
     }
 /* main */
+    .main{
+        padding-bottom:42px;
+    }
     .main-inner{
         width: 1248px;
         margin:0 auto;
@@ -235,6 +270,48 @@ export default {
         height: 58px;
         background: url(../../public/images/banner_1.jpg) center;
     }
+    /* 一行图 */
+    .main-list__wrapper{
+        margin-right:-16px;
+    }
+    .main-list__wrapper a{
+        position: relative;
+        overflow: hidden;
+        float: left;
+        width: 164px;
+        height: 70px;
+        margin-right: 16px;
+        border-radius: 5px;
+    }
+    .main-list__wrapper img{
+        opacity: .9;
+    }
+    .main-list__wrapper a:hover img{
+        opacity: 1;
+    }
+    .main-list__wrapper span{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        line-height: 70px;
+        font-size: 20px;
+        color: #fff;
+        text-align: center;
+        font-weight: 700;
+    }
+    /* 清除浮动 */
+    .clearfix{
+        zoom: 1;
+    }
+    .clearfix:after{
+        content:"020";
+        height: 0;
+        display: block;
+        clear: both;
+        visibility: hidden;
+    }
+
 </style>
 
 

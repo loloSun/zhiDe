@@ -1,10 +1,15 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <Footer />
   </div>
 </template>
 <script>
+import Footer from '@/components/Footer.vue'
 export default {
+  components:{
+    Footer
+  }
 }
 </script>
 <style lang="less">
@@ -13,7 +18,7 @@ export default {
   padding: 0;
   font-size: 14px;
   font-family: -apple-system,SF UI Display,Arial,PingFang SC,Hiragino Sans GB,Microsoft YaHei,WenQuanYi Micro Hei,sans-serif;
-  color: #333;
+  // color: #333;
   // background-color: #fff;
 }
 ul, ol {
@@ -23,6 +28,9 @@ a {
   display: block;
   color: #333;
   text-decoration: none;
+}
+em, strong, i {
+  font-style: normal;
 }
 // a:hover {
 //   color: #9A0000;

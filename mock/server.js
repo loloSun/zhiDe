@@ -1,16 +1,14 @@
 let express = require('express')
 let app = express()
+let cors = require('cors')
+app.use(cors())
 
-// 静态文件中间件
-// app.use('public',express.static(__dirname + '/public'));
-
+let theme  = require('./json/Theme.json')
 // 首页一行图接口
-app.get('/',function(req,res){
-    // let newList = data.reverse().slice(0,6)
-    // res.json(newList)
-    console.log(res.reverse())
+app.get('/theme',function(req,res){
+    res.json({success_code:200,message:theme})
 })
 
-app.listen(3000,()=>{
+app.listen(4000,function(){
     console.log('OK')
 })

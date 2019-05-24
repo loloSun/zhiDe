@@ -23,6 +23,64 @@
         </div> -->
     </div>
 </template>
+<script>
+import $ from 'jquery'
+export default {
+    mounted(){
+        // 注册
+        var $register_btn = $('#header').find('.register')
+        var $user = $('#user')
+        var $user_register = $user.find('.register')
+        var $user_login = $user.find('.login')
+        var $user_inner = $user.find('.user-inner')
+        $user_inner.click(()=>{
+            return false
+        })
+        // 注册
+        $register_btn.click(()=>{
+            $('.cricle-4').hide();
+            $('.cricle-3').show();
+            $user.show();
+            $user_register.show();
+            $user_login.hide();
+            return false;
+        })
+        var $switch_register = $user.find('.cricle-4')
+        $switch_register.click(()=>{
+            $user_login.hide();
+            $user_register.show();
+            $('.cricle-4').hide();
+            $('.cricle-3').show();
+        })
+        // 登录
+        var $login_btn = $('#header').find('.login')
+        $login_btn.click(()=>{
+            $('.cricle-3').hide();
+            $('.cricle-4').show();
+            $user.show();
+            $user_register.hide();
+            $user_login.show();
+            return false;
+        })
+        var $switch_login = $user.find('.cricle-3')
+        $switch_login.click(()=>{
+            $user_register.hide();
+            $user_login.show();
+            $('.cricle-3').hide();
+            $('.cricle-4').show();
+        })
+        // 关闭登录注册框
+        var $close_btn = $user.find('.close')
+        $close_btn.click(()=>{
+            $user.hide()
+        })
+        $(document).click(()=>{
+            $user.hide()
+        })
+    }
+}
+</script>
+
 <style scoped>
 .container{
     width: 1248px;

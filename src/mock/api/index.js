@@ -7,9 +7,18 @@ axios.interceptors.response.use(function(res){
     return Promise.reject(err)
 })
 
-export let Theme = () =>{
-    let theme =  axios.get('/theme')
+
+// 首页theme
+export let getThemeHot = () =>{
+    let theme =  axios.get('/getThemeHot')
     return theme.then((res)=>{
         return res.message
     })
 }
+
+
+
+
+
+
+// module.exports = router;

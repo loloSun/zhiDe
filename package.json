@@ -14,7 +14,7 @@
     "core-js": "^2.6.5",
     "cors": "^2.8.5",
     "express": "^4.17.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "leancloud-realtime": "^4.3.0",
     "leancloud-storage": "^3.13.2",
     "leanengine": "^3.3.3",

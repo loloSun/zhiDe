@@ -18,7 +18,7 @@
     "leancloud-realtime": "^4.3.0",
     "leancloud-storage": "^3.13.2",
     "leanengine": "^3.3.3",
-    "underscore": "^1.9.1",
+    "underscore": "^1.12.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
     "vuex": "^3.0.1"
